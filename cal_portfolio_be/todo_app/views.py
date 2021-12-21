@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from .serializers import TodoSerializer
+from .models import Todo
 from dotenv import load_dotenv
 import pyrebase
 import os
-
 
 load_dotenv()
 
@@ -16,23 +18,13 @@ firebaseConfig = {
   "appId": os.getenv('DEV_APP_ID'),
 }
 
-print('firebaseConfig.databaseURL',firebaseConfig["databaseURL"])
-print('firebaseConfig.apiKey',firebaseConfig["apiKey"])
 # Firebase authentication
+
 firebase = pyrebase.initialize_app(firebaseConfig)
-authe = firebase.auth()
+auth = firebase.auth()
 database = firebase.database()
 
-def index(request):
-        #accessing our firebase data and storing it in a variable
-        name = database.child('Data').child('Name').get().val()
-        stack = database.child('Data').child('Stack').get().val()
-        framework = database.child('Data').child('Framework').get().val()
 
-        context = {
-            'name':name,
-            'stack':stack,
-            'framework':framework
-        }
-
-        return render(request, 'index.html', context)
+class TodoView(viewsets.ModelViewSet):
+    serializer_class = TodoSerializer
+    queryset = Todo.objects.all()
