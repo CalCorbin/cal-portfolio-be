@@ -7,13 +7,13 @@ import os
 load_dotenv()
 
 firebaseConfig = {
-  "apiKey": os.getenv('DEV_APIKEY'),
-  "databaseURL": os.getenv('DEV_DATABASEURL'),
-  "authDomain": os.getenv('DEV_AUTHDOMAIN'),
-  "projectId": os.getenv('DEV_PROJECTID'),
-  "storageBucket": os.getenv('DEV_STORAGEBUCKET'),
-  "messagingSenderId": os.getenv('DEV_MESSAGINGSENDERID'),
-  "appId": os.getenv('DEV_APPID'),
+  "apiKey": os.getenv('DEV_API_KEY'),
+  "databaseURL": os.getenv('DEV_DATABASE_URL'),
+  "authDomain": os.getenv('DEV_AUTH_DOMAIN'),
+  "projectId": os.getenv('DEV_PROJECT_ID'),
+  "storageBucket": os.getenv('DEV_STORAGE_BUCKET'),
+  "messagingSenderId": os.getenv('DEV_MESSAGING_SENDER_ID'),
+  "appId": os.getenv('DEV_APP_ID'),
 }
 
 print('firebaseConfig.databaseURL',firebaseConfig["databaseURL"])
